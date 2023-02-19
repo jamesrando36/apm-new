@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-products',
@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 export class ProductListComponent {
   constructor() {}
 
+  imageWidth: number = 50;
+  imageMargin: number = 2;
   pageTitle = 'Product List';
+
+  showImage: boolean = false;
+  searchFilter: string = 'search';
+
   products: any[] = [
     {
       productId: 1,
@@ -60,4 +66,8 @@ export class ProductListComponent {
       imageUrl: 'assets/images/xbox-controller.png',
     },
   ];
+
+  toggleImage(): void {
+    this.showImage = !this.showImage;
+  }
 }
