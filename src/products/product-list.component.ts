@@ -1,20 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { IProduct } from 'src/interfaces/product';
 
 @Component({
   selector: 'app-products',
   templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.css'],
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit {
   constructor() {}
 
+  pageTitle = 'Product List';
   imageWidth: number = 50;
   imageMargin: number = 2;
-  pageTitle = 'Product List';
-
   showImage: boolean = false;
-  searchFilter: string = 'search';
 
-  products: any[] = [
+  private _searchFilter: string = '';
+  public get searchFilter(): string {
+    return this._searchFilter;
+  }
+  public set searchFilter(value: string) {
+    this._searchFilter = value;
+    this.filteredProducts = this.PeformFilter(value);
+  }
+
+  products: IProduct[] = [
     {
       productId: 1,
       productName: 'Leaf Rake',
@@ -67,7 +76,20 @@ export class ProductListComponent {
     },
   ];
 
+  filteredProducts: IProduct[] = [];
+
+  ngOnInit(): void {
+    this._searchFilter = 'search';
+  }
+
   toggleImage(): void {
     this.showImage = !this.showImage;
+  }
+
+  PeformFilter(filterBy: string): IProduct[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.products.filter((product: IProduct) =>
+      product.productName.toLocaleLowerCase().includes(filterBy)
+    );
   }
 }
