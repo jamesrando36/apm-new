@@ -47,7 +47,8 @@
             <td>{{ item.releaseDate }}</td>
             <td>{{ item.description }}</td>
             <td>{{ item.price | currency : "GBP" }}</td>
-            <td>{{ item.starRating }}</td>
+            <td><app-star [rating]='item.starRating'
+              (ratingClicked)="onRaitingClicked($event)"></app-star></td>
           </tr>
         </tbody>
       </table>
