@@ -4,7 +4,6 @@ import { IProduct } from 'src/interfaces/product';
 import { ProductService } from 'src/services/product.service';
 
 @Component({
-  selector: 'app-products',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
 })
