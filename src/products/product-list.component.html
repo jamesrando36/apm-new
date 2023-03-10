@@ -42,13 +42,24 @@
                 [style.margin.px]="imageMargin"
               />
             </td>
-            <td>{{ item.productName }}</td>
+            <td>
+              <a
+                [routerLink]="['/products', item.productId]"
+                routerLinkActive="router-link-active"
+              >
+                {{ item.productName }}
+              </a>
+            </td>
             <td>{{ item.productCode | lowercase }}</td>
             <td>{{ item.releaseDate }}</td>
             <td>{{ item.description }}</td>
             <td>{{ item.price | currency : "GBP" }}</td>
-            <td><app-star [rating]='item.starRating'
-              (ratingClicked)="onRaitingClicked($event)"></app-star></td>
+            <td>
+              <app-star
+                [rating]="item.starRating"
+                (ratingClicked)="onRaitingClicked($event)"
+              ></app-star>
+            </td>
           </tr>
         </tbody>
       </table>
